@@ -1,0 +1,21 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 100 100
+% Set up clip path
+newpath
+0 0 moveto
+100 0 lineto
+100 100 lineto
+0 100 lineto
+closepath
+clip
+newpath
+% Draw triangle
+gsave
+   50 50 translate
+   newpath
+   0 40 moveto
+   2 { 120 rotate
+   0 40 lineto } repeat
+   closepath
+   stroke
+grestore
