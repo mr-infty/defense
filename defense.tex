@@ -5,6 +5,7 @@
 
 \usepackage[sans]{dsfont}
 \usepackage{amsmath}
+\usepackage{tikz}
 
 \newcommand{\op}[1]{\operatorname{#1}}
 \newcommand{\bbf}[1]{\mathds{#1}}
@@ -26,25 +27,40 @@
    \item<2-> Zentrales Objekt: \textbf{Hecke-Algebren} \pause[3](Iwahori-Hecke-Algebren, affine Hecke-Algebren, pro-$p$-Iwahori Hecke-Algebren, \dots)\pause[4], genauer \textbf{generische pro$\text{-}p$ Hecke-Algebren}
    \item<5-> Hecke Algebren $\mathcal{H}$ werden gebildet zu
       \begin{itemize}
-         \item<6-> einer \textbf{Coxetergruppe}
-         \item<7-> und einer \textbf{Familie von Parametern}
+         \item<6-> einer \textbf{Coxetergruppe}\pause[7] (bzw. einer ``pro-$p$ Coxetergruppe'')
+         \item<8-> und einer \textbf{Familie von Parametern}
       \end{itemize}
-   \item<8-> Zentrales Ziel: Bestimmung der Struktur von $\mathcal{H}$\pause[9], insbesondere Bestimmung des \textbf{Zentrums} $Z(\mathcal{H})$
-      \pause[10]\[ Z(\mathcal{H}) = \{ z \in \mathcal{H}\ :\ zx = xz\text{ für alle } x \in \mathcal{H} \} \]
-   \item<11-> Ideologie:
+   \item<9-> Zentrales Ziel: Bestimmung der Struktur von $\mathcal{H}$\pause[10], insbesondere Bestimmung des \textbf{Zentrums} $Z(\mathcal{H})$
+      \pause[11]\[ Z(\mathcal{H}) = \{ z \in \mathcal{H}\ :\ zx = xz\text{ für alle } x \in \mathcal{H} \} \]
+   \item<12-> Ideologie:
       \begin{itemize}
-         \item<12-> Coxetergruppen sind \textit{geometrische} Objekte
-         \item<13-> Verstehe $\mathcal{H}$ vermöge dieser Geometrie!
+         \item<13-> Coxetergruppen sind \textit{geometrische} Objekte
+         \item<14-> Verstehe $\mathcal{H}$ vermöge dieser Geometrie!
       \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Das einfachste mathematische Objekt}
-   \pause
+   \pause[2]
+   \textbf{Frage:} Was ist die Gruppe $G$ der \textit{Symmetrien} von $\Delta$?
+   \pause[1]
+   %\begin{figure}
+   %\centering
+   %   \includegraphics[width=0.5\textwidth]{graphics/triangle.eps}
+   %\end{figure}
    \begin{figure}
-   \centering
-      \includegraphics[width=0.5\textwidth]{graphics/triangle.eps}
+      \centering
+      \begin{tikzpicture}[scale=3]
+         \useasboundingbox (-1,-1) rectangle (1,1);
+         \draw (0,1) -- [rotate=30] at (1,0);
+         %\foreach \x in {0,1} {
+         %   -- [rotate=120] (0,1)
+         %} -- cycle;
+      \end{tikzpicture}
    \end{figure}
+\end{frame}
+
+\begin{frame}{Geometrie der Spiegelungsgruppen}
 \end{frame}
 
 \end{document}
