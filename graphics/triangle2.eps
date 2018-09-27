@@ -20,3 +20,14 @@ gsave
    closepath
    stroke
 grestore
+% Draw symmetry axes
+gsave
+   1 0 0 setrgbcolor
+   3 {
+      newpath
+      0 -50 moveto
+      0 50 lineto
+      stroke
+      120 rotate
+   } repeat
+grestore
