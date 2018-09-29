@@ -5,7 +5,9 @@
 
 \usepackage[sans]{dsfont}
 \usepackage{amsmath}
-\usepackage{tikz}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\usepackage{eqparbox}
 
 \newcommand{\op}[1]{\operatorname{#1}}
 \newcommand{\bbf}[1]{\mathds{#1}}
@@ -41,22 +43,26 @@
 \end{frame}
 
 \begin{frame}{Das einfachste mathematische Objekt}
+   \pause[3]
+   \begin{tabular}[t]{rl}
+      \textbf{Frage:}& Was ist die Gruppe der \textit{Symmetrien} von $\Delta$? \\
+      \uncover<24->{\textbf{Antw.:}}& \pause[4]$W = \only<4-6>{\text{?}}\only<7-9>{\{ s, t, u, ... \}}\only<10>{\{ s, t, sts, ... \}}\only<11-13>{\{ s, t, sts, st, ... \}}\only<14-17>{\{ s, t, sts, st, \temporal<15>{\eqmakebox[BOX1][l]{$(st)^2$}}{\eqmakebox[BOX1][l]{$(st)^{-1}$}}{\eqmakebox[BOX1][l]{$ts$}}, \alt<-16>{\eqmakebox[BOX3][l]{$(st)^3$}}{\eqmakebox[BOX3][l]{$1$}}, ... \}}\only<18-22>{\eqmakebox[BOX2][l]{$\{ s, t, sts, st, ts, 1, ... \}$}}\only<23->{\eqmakebox[BOX2][l]{$\{ s, t, sts, st, ts, 1 \}$}}\only<22>{\eqmakebox[BOX4][r]{$\quad \subseteq\quad S_3$}}\only<23>{\eqmakebox[BOX4][r]{$ \quad =\quad S_3$}}$ \\
+      \only<12-18,26-28>{\textbf{NB:}} & \only<-18>{\uncover<12-18>{$st = \text{\textit{Drehung} um 120\degree} \pause[13]\quad\Rightarrow\quad \op{ord}(st) = 3$}}\only<26-28>{$W$ erhält $\mathfrak{H} = \{ s, t, u \}$\only<28->{ und \textit{Kammern}}}
+   \end{tabular}
    \pause[2]
-   \textbf{Frage:} Was ist die Gruppe $G$ der \textit{Symmetrien} von $\Delta$?
-   \pause[1]
-   %\begin{figure}
-   %\centering
-   %   \includegraphics[width=0.5\textwidth]{graphics/triangle.eps}
-   %\end{figure}
    \begin{figure}
-      \centering
-      \begin{tikzpicture}[scale=3]
-         \useasboundingbox (-1,-1) rectangle (1,1);
-         \draw (0,1) -- [rotate=30] at (1,0);
-         %\foreach \x in {0,1} {
-         %   -- [rotate=120] (0,1)
-         %} -- cycle;
-      \end{tikzpicture}
+   \centering%
+      \includegraphics<2-4>[width=0.5\textwidth]{graphics/triangle.eps}%
+      \includegraphics<5>[width=0.5\textwidth]{graphics/triangle2.eps}%
+      \includegraphics<6-7>[width=0.5\textwidth]{graphics/triangle3.eps}%
+      \includegraphics<8>[width=0.5\textwidth]{graphics/triangle4.eps}%
+      \includegraphics<9-19>[width=0.5\textwidth]{graphics/triangle5.eps}%
+      \includegraphics<20>[width=0.5\textwidth]{graphics/triangle6.eps}%
+      \includegraphics<21-23>[width=0.5\textwidth]{graphics/triangle7.eps}%
+      \includegraphics<24>[width=0.5\textwidth]{graphics/triangle8.eps}%
+      \includegraphics<25-26>[width=0.5\textwidth]{graphics/triangle9.eps}%
+      \includegraphics<27-30>[width=0.5\textwidth]{graphics/triangle10.eps}%
+      \includegraphics<35->[width=0.5\textwidth]{graphics/triangle9.eps}%
    \end{figure}
 \end{frame}
 

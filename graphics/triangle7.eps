@@ -1,0 +1,41 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 100 100
+% Set up clip path
+newpath
+0 0 moveto
+100 0 lineto
+100 100 lineto
+0 100 lineto
+closepath
+clip
+% Center coordinates
+50 50 translate
+newpath
+% Draw triangle
+gsave
+   newpath
+   0 40 moveto
+   2 { 120 rotate
+   0 40 lineto } repeat
+   closepath
+   stroke
+grestore
+% Draw vertices and labels
+/Times-Roman findfont
+8 scalefont
+setfont
+gsave
+   0 120 240 {
+      gsave
+         dup
+         rotate
+         0 40 translate
+         newpath 0 0 4 0 360 arc fill
+         1 setgray
+         dup neg rotate
+         newpath -1.8 -2.4 moveto
+         120 idiv 1 add
+         1 string cvs show
+      grestore
+   } for
+grestore
