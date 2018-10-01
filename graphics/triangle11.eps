@@ -1,0 +1,92 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 100 100
+% Set up clip path
+newpath
+0 0 moveto
+100 0 lineto
+100 100 lineto
+0 100 lineto
+closepath
+clip
+% Center coordinates
+50 50 translate
+% Draw chamber background
+gsave
+   0.5 0.5 1 setrgbcolor
+   clippath fill
+grestore
+% Draw fundamental chamber in different color
+gsave
+   1 0.5 0 setrgbcolor
+   -60 rotate
+   newpath
+   0 0 moveto
+   0 100 lineto
+   100 100 lineto
+   100 0 lineto
+   closepath
+   clip
+   -60 rotate
+   newpath
+   0 0 moveto
+   0 100 lineto
+   -100 100 lineto
+   -100 0 lineto
+   closepath
+   clip
+   clippath fill
+grestore
+% Carve out axes
+gsave
+   1 setgray
+   currentlinewidth 2 mul setlinewidth
+   3 {
+      newpath
+      0 -100 moveto
+      0 100 lineto
+      stroke
+      120 rotate
+   } repeat
+grestore
+%% Draw symmetry axes
+%gsave
+%   1 0 0 setrgbcolor
+%   3 {
+%      newpath
+%      0 -50 moveto
+%      0 50 lineto
+%      stroke
+%      120 rotate
+%   } repeat
+%grestore
+%% Draw labels
+%gsave
+%   %1 0 0 setrgbcolor
+%   /Times-Roman findfont
+%   8 scalefont
+%   setfont
+%   % Draw u
+%   gsave
+%      newpath
+%      4 42 moveto
+%      (u = sts) show
+%   grestore 
+%   % Draw s
+%   gsave
+%      300 rotate
+%      6 42 translate
+%      -300 rotate
+%      newpath
+%      0 0 moveto
+%      (s) show
+%   grestore 
+%   % Draw t
+%   gsave
+%      240 rotate
+%      8 44 translate
+%      -240 rotate
+%      newpath
+%      0 0 moveto
+%      (t) show
+%   grestore 
+%grestore

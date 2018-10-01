@@ -28,11 +28,11 @@ gsave
    0 120 240 {
       gsave
          dup
-         rotate
+         240 add rotate
          0 40 translate
          newpath 0 0 4 0 360 arc fill
          1 setgray
-         dup neg rotate
+         dup 240 add neg rotate
          newpath -1.8 -2.4 moveto
          120 idiv 1 add
          1 string cvs show
