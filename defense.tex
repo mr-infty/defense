@@ -26,7 +26,8 @@
 
 \begin{frame}{Überblick}
 \begin{itemize}
-   \item<2-> Zentrales Objekt: \textbf{Hecke-Algebren} \pause[3](Iwahori-Hecke-Algebren, affine Hecke-Algebren, pro-$p$-Iwahori Hecke-Algebren, \dots)\pause[4], genauer \textbf{generische pro$\text{-}p$ Hecke-Algebren}
+   \item<2-> Zentrales Objekt: \textbf{Hecke-Algebren} \pause[3](Iwahori-Hecke-Algebren, affine Hecke-Algebren, pro-$p$-Iwahori Hecke-Algebren, \dots)
+   \item<4->Genauer: \textbf{generische pro$\text{-}p$ Hecke-Algebren}
    \item<5-> Hecke Algebren $\mathcal{H}$ werden gebildet zu
       \begin{itemize}
          \item<6-> einer \textbf{Coxetergruppe}\pause[7] (bzw. einer ``pro-$p$ Coxetergruppe'')
@@ -47,7 +48,7 @@
    \begin{tabular}[t]{rl}
       \textbf{Frage:}& Was ist die Gruppe der \textit{Symmetrien} von $\Delta$? \\
       \uncover<24->{\textbf{Antw.:}}& \pause[4]$W = \only<4-6>{\text{?}}\only<7-9>{\{ s, t, u, ... \}}\only<10>{\{ s, t, sts, ... \}}\only<11-13>{\{ s, t, sts, st, ... \}}\only<14-17>{\{ s, t, sts, st, \temporal<15>{\eqmakebox[BOX1][l]{$(st)^2$}}{\eqmakebox[BOX1][l]{$(st)^{-1}$}}{\eqmakebox[BOX1][l]{$ts$}}, \alt<-16>{\eqmakebox[BOX3][l]{$(st)^3$}}{\eqmakebox[BOX3][l]{$1$}}, ... \}}\only<18-22>{\eqmakebox[BOX2][l]{$\{ s, t, sts, st, ts, 1, ... \}$}}\only<23->{\eqmakebox[BOX2][l]{$\{ s, t, sts, st, ts, 1 \}$}}\only<22>{\eqmakebox[BOX4][r]{$\quad \subseteq\quad S_3$}}\only<23>{\eqmakebox[BOX4][r]{$ \quad =\quad S_3$}}$ \\
-      \only<12-18,26-28>{\textbf{NB:}}\only<29-30>{\textbf{Wähle}}\only<31-32>{\textbf{Zu}}\only<33-36>{\textbf{Finde}}\only<46-53>{\textbf{NB:}}\only<54-63>{\textbf{Fazit:}} & \only<-18>{\uncover<12-18>{$st = \text{\textit{Drehung} um 120\degree} \pause[13]\quad\Rightarrow\quad \op{ord}(st) = 3$}}\only<26-28>{$W$ erhält $\mathfrak{H} = \{ s, t, u \}$\only<28->{ und \textit{Kammern}}}\only<29-30>{\textit{Fundamentalkammer}\only<30>{ $C$}}\only<31-32>{ $w \in W$\only<32>{ \textbf{betrachte} $wC$}}\only<33-36>{\textit{Gallerie}}\only<34-36>{ $(C, \uncover<35->{D}, \uncover<36->{E}, wC)$ }\only<46-48,50-53>{ $stswC = C$ }\only<48>{$\Rightarrow$ $wC = stsC$ }\only<49>{$\Rightarrow$ Jede Kammer hat die Form $sts\dots C$}\only<51-53>{ $\Rightarrow stsw = 1$ }\only<52-53>{$\Leftrightarrow$ $w = sts$}\only<53>{ $\Rightarrow W = \left<s,t\right>$}\only<54-56>{$W = \left<s,t\right>$ \only<55-56>{wirkt einfach transitiv auf Kammern}}\only<57>{$W = \text{Kammern}$}\only<58->{Ausdruck \only<58>{\eqmakebox[BOXeql][l]{$1$}}\only<59-61>{\eqmakebox[BOXeql][l]{$\uncover<59->{s}\uncover<60->{t}\uncover<61->{s}$}} $\widehat{=}$ Gallerie $(C\only<59->{, sC}\only<60->{, stC}\only<61->{, stsC})$}
+      \only<12-18,26-28>{\textbf{NB:}}\only<29-30>{\textbf{Wähle}}\only<31-32>{\textbf{Zu}}\only<33-36>{\textbf{Finde}}\only<46-53>{\textbf{NB:}}\only<54-65>{\textbf{Fazit:}} & \only<-18>{\uncover<12-18>{$st = \text{\textit{Drehung} um 120\degree} \pause[13]\quad\Rightarrow\quad \op{ord}(st) = 3$}}\only<26-28>{$W$ erhält $\mathfrak{H} = \{ s, t, u \}$\only<28->{ und \textit{Kammern}}}\only<29-30>{\textit{Fundamentalkammer}\only<30>{ $C$}}\only<31-32>{ $w \in W$\only<32>{ \textbf{betrachte} $wC$}}\only<33-36>{\textit{Gallerie}}\only<34-36>{ $(C, \uncover<35->{D}, \uncover<36->{E}, wC)$ }\only<46-48,50-53>{ $stswC = C$ }\only<48>{$\Rightarrow$ $wC = stsC$ }\only<49>{$\Rightarrow$ Jede Kammer hat die Form $sts\dots C$}\only<51-53>{ $\Rightarrow stsw = 1$ }\only<52-53>{$\Leftrightarrow$ $w = sts$}\only<53>{ $\Rightarrow W = \left<s,t\right>$}\only<54-56>{$W = \left<s,t\right>$ \only<55-56>{wirkt einfach transitiv auf Kammern}}\only<57>{$W = \text{Kammern}$}\only<58-63>{Ausdruck \only<58>{\eqmakebox[BOXeql][l]{$1$}}\only<59-61>{\eqmakebox[BOXeql][l]{$\uncover<59->{s}\uncover<60->{t}\uncover<61->{s}$}}\only<62-63>{\eqmakebox[BOXeql][l]{$tst$}} $\widehat{=}$ Gallerie $(1\only<59-61>{, s}\only<62-63>{, t}\only<60-61>{, st}\only<62-63>{, ts}\only<61>{, sts}\only<62-63>{, tst})$}\only<64-65>{$sts = tst$ \uncover<65>{\quad (``Zopfrelation'')}}
    \end{tabular}
    \pause[2]
    \begin{figure}
@@ -81,10 +82,12 @@
       \includegraphics<59>[width=0.5\textwidth]{graphics/triangle26.eps}%
       \includegraphics<60>[width=0.5\textwidth]{graphics/triangle27.eps}%
       \includegraphics<61>[width=0.5\textwidth]{graphics/triangle28.eps}%
+      \includegraphics<62>[width=0.5\textwidth]{graphics/triangle29.eps}%
+      \includegraphics<63-65>[width=0.5\textwidth]{graphics/triangle30.eps}%
    \end{figure}
 \end{frame}
 
-\begin{frame}{Geometrie der Spiegelungsgruppen}
+\begin{frame}{Coxetergruppen}
 \end{frame}
 
 \end{document}
