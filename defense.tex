@@ -2,7 +2,6 @@
 \mode<presentation>{}
 %
 \usecolortheme{orchid}
-
 %
 
 \usepackage[utf8]{inputenc}
@@ -16,6 +15,8 @@
 \newcommand{\op}[1]{\operatorname{#1}}
 \newcommand{\bbf}[1]{\mathds{#1}}
 \newcommand{\Z}{\bbf{Z}}
+
+\renewcommand*{\proofname}{Beweis}
 
 \title{Bernsteinrelationen, der $2$-Kozykel $\bbf{X}$, und der Raum der Orientierungen}
 \author{Nicolas A. Schmidt}
@@ -126,11 +127,36 @@
    \begin{itemize}
       \item<1-> $R$ - komm. Ring
       \item<2-> $(W,S)$ - Coxetergruppe
-      \item<3-> $a_s, b_s \in R$ für $s \in S$, so dass\pause[4]
-         \[ s,t \text{ konjugiert in $W$ } \Rightarrow a_s = a_t,\ b_s = b_t \]
+      \item<3-> $a_s, b_s \in R$ für $s \in S$; \pause[4] $s,t$ konjugiert in $W$ $\Rightarrow$ $a_s = a_t,\ b_s = b_t$
    \end{itemize}
-   \begin{definition}
-      Die \textit{Hecke-Algebra}
+   \pause[5]\begin{definition}
+      Die \textit{Hecke-Algebra} $\mathcal{H}$ von $(W,S)$ \pause über $R$\pause , zu den Parametern $(a_s)_s$, $(b_s)_s$\pause , ist der $R$-Modul
+      \[ \mathcal{H} := \bigoplus_{w \in W} R T_w \pause = \{ \sum_{w \in W} c_w T_w : c_w \in R\} \]
+      \pause versehen mit dem Produkt
+      \begin{align*}
+         T_w T_{w'} & = T_{ww'} && \text{falls $\ell(w)+\ell(w') = \ell(ww')$} \\
+         \uncover<11->{T_s^2 & = a_s + b_s T_s && \text{($s \in S$)}}
+      \end{align*}
    \end{definition}
+\end{frame}
+
+\begin{frame}{Das Leitbeispiel}
+   Sei $a_s \equiv 1, b_s \equiv 0$: \pause $\Rightarrow T_s^2 = 1$
+   \pause\begin{lemma}
+      \begin{center}$T_w T_{w'} = T_{ww'} \quad \text{ für alle } w,w' \in W$\end{center}
+   \end{lemma}
+   \pause \begin{proof}
+      \begin{itemize}
+         \item<4-> O.B.d.A. $w = s$ und $\ell(sw') < \ell(w')$
+         \item<5-> (Bed. E) $\Rightarrow$ $w' = s s_2 \ldots s_r$, $r = \ell(w')$
+         \item<6-> $T_{w'} = T_{ss_2\ldots s_r} \pause[7] = T_s T_{s_2 \ldots s_r} \pause[8] = T_s T_v$
+         \item<9-> $T_s T_{w'} = T_s T_s T_v \pause[10] = T_v \pause[11] = T_{sw'}$
+      \end{itemize}
+   \end{proof}
+   \pause[12] $\Rightarrow \mathcal{H}$ ist nichts weiter als die Gruppenalgebra $R[W]$!
+\end{frame}
+
+\begin{frame}{Der Leitspruch}
+   \begin{center}\LARGE Was für die Gruppenalgebra gilt, sollte auch für Hecke-Algebren gelten!\end{center}
 \end{frame}
 \end{document}
