@@ -9,77 +9,81 @@
 %     shaftwidth     = width of shaft
 %     headlength     = length of head
 %     arrowidth      = width of arrow
-/arrowdict 15 def
-/arrow {
-   arrowdict begin
-      /headlength exch def
-      /arrowwidth exch def
-      /shaftwidth exch def
-      /tipy exch def
-      /tipx exch def
-      /taily exch def
-      /tailx exch def
-      /dx tipx tailx sub def
-      /dy tipy taily sub def
-      /arrowlength dx dx mul dy dy mul add sqrt def
-      /halfshaftwidth shaftwidth 2 div def
-      /halfheadwidth arrowwidth 2 div def
-      /angle dy dx atan def
-      /base arrowlength headlength sub def
-      /savedmatrix matrix currentmatrix def
-      tailx taily translate angle rotate
-      0 halfshaftwidth neg moveto
-      base halfshaftwidth neg lineto
-      base halfheadwidth neg lineto
-      arrowlength 0 lineto
-      base halfheadwidth lineto
-      base halfshaftwidth lineto
-      0 halfshaftwidth lineto
-      closepath
-      savedmatrix setmatrix
-   end
+/arrowdict 15 dict def
+/arrow { % tailx taily tipx tipy shaftwidth arrowwidth headlength =>
+arrowdict begin
+            /headlength exch def
+            /arrowwidth exch def
+            /shaftwidth exch def
+            /tipy exch def
+            /tipx exch def
+            /taily exch def
+            /tailx exch def
+            /dx tipx tailx sub def
+            /dy tipy taily sub def
+            /arrowlength dx dx mul dy dy mul add sqrt def
+            /halfshaftwidth shaftwidth 2 div def
+            /halfheadwidth arrowwidth 2 div def
+            /angle dy dx atan def
+            /base arrowlength headlength sub def
+            /savedmatrix matrix currentmatrix def
+            tailx taily translate angle rotate
+            0 halfshaftwidth neg moveto
+            base halfshaftwidth neg lineto
+            base halfheadwidth neg lineto
+            arrowlength 0 lineto
+            base halfheadwidth lineto
+            base halfshaftwidth lineto
+            0 halfshaftwidth lineto
+            closepath
+            savedmatrix setmatrix
+            end
 } def
 
 /smult2dict 3 dict def
 /smult2 { % x y s smult => s*x s*y
    smult2dict begin
-   /s exch def
-   /y exch def
-   /x exch def
-   x s mul
-   y s mul
+      /s exch def
+      /y exch def
+      /x exch def
+      x s mul
+      y s mul
    end
 } def
+
 /vadd2dict 4 dict def
 /vadd2 { % x1 y1 x2 y2 => x1+x2 + y1+y2
    vadd2dict begin
-   /y2 exch def
-   /x2 exch def
-   /y1 exch def
-   /x1 exch def
-   x1 x2 add
-   y1 y2 add
+      /y2 exch def
+      /x2 exch def
+      /y1 exch def
+      /x1 exch def
+      x1 x2 add
+      y1 y2 add
    end
 } def
+
 /lincombdict 6 dict def
 /lincomb { % x1 y1 x2 y2 s1 s2 => (s1*x1 + s2*x2) (s1*y1 + s2*y2)
    lincombdict begin
-   /s2 exch def
-   /s1 exch def
-   /y2 exch def
-   /x2 exch def
-   /y1 exch def
-   /x1 exch def
-   s1 x1 mul s2 x2 mul add
-   s1 y1 mul s2 y2 mul add
+      /s2 exch def
+      /s1 exch def
+      /y2 exch def
+      /x2 exch def
+      /y1 exch def
+      /x1 exch def
+      s1 x1 mul s2 x2 mul add
+      s1 y1 mul s2 y2 mul add
    end
 } def
+
 /drawpoint { % x y => 
    gsave
       translate
       newpath 0 0 2.5 0 360 arc fill
    grestore
 } def
+
 /drawpointraddict 1 dict def
 /drawpointrad { % r x y => 
    gsave
@@ -91,13 +95,13 @@
 
 /endpointdict 1 dict def
 /endpoint { % <start-point> <gallery> => <point>
-endpointdict begin
-   /savedmatrix matrix currentmatrix def
-   { exec } forall
-   moveto
-   savedmatrix setmatrix
-   currentpoint
-end
+   endpointdict begin
+      /savedmatrix matrix currentmatrix def
+      { load exec } forall
+      moveto
+      savedmatrix setmatrix
+      currentpoint
+   end
 } def
 
 %% Constants
@@ -125,8 +129,8 @@ end
 } def
 
 /refl0 {
-   1 -1 scale
-   FCx FCy translate
+   -1 1 scale
+   Lat2x neg 0 translate
 } def
 
 % Set up clip path
@@ -268,5 +272,7 @@ grestore
 
 % Draw gallery
 0.25 0.25 scale
-%4 FCx FCy drawpointrad
-1 FCx FCy [ refl0 ] endpoint drawpointrad
+%FCx FCy
+FCx FCy [ /refl0 /refl1 /refl2 ] endpoint drawpoint
+%0.1 0.1 0.1 arrow
+0.0 0.0 10.0 10.0 0.1 0.1 0.1 arrow stroke
