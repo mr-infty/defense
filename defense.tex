@@ -15,6 +15,7 @@
 \newcommand{\op}[1]{\operatorname{#1}}
 \newcommand{\bbf}[1]{\mathds{#1}}
 \newcommand{\Z}{\bbf{Z}}
+\newcommand{\R}{\bbf{R}}
 
 \renewcommand*{\proofname}{Beweis}
 
@@ -158,5 +159,83 @@
 
 \begin{frame}{Der Leitspruch}
    \begin{center}\LARGE Was für die Gruppenalgebra gilt, gilt auch für die Hecke-Algebra!\end{center}
+\end{frame}
+
+\begin{frame}{Das Zentrum von $R[W]$}
+   \pause Sei $z = \sum_w c_w T_w \in Z(R[W])$.
+   \begin{itemize}
+      \item<3-> Für $g \in W$: $T_g z = z T_g \pause[4]\Rightarrow z = T_g z T_g^{-1}$
+      \item<5-> $T_g z T_g^{-1} = \sum_w c_w T_{gwg^{-1}} \pause[6]= \sum_w c_{g^{-1}wg} T_w$
+      \item<7-> $c_w = c_{g^{-1}wg}$ für alle $g \in W$
+      \item<8-> d.h. $c_w$ hängt nur von $[w] = \{ g^{-1}wg : g \in G\}$ ab
+      \item<9-> $\Rightarrow c_w = 0$ falls $[w]$ nicht endlich ist
+   \end{itemize}
+   \pause[10]Fazit:
+   \begin{align*}Z(R[W]) & = \bigoplus_{[w] \text{ endl.}} R z_{[w]} \\
+      \uncover<11->{z_{[w]} & := \sum_{w' \in [w]} T_{w'}}
+   \end{align*}
+\end{frame}
+
+\begin{frame}{Affine Spiegelungsgruppen}
+   \begin{itemize}
+      \item<2-> Hatten betrachtet $W = D_3$\uncover<3->{ ($= S_3$)}
+      \item<4-> Allg. $D_n = \text{(Symmetrien eines $n$-Ecks)}$\uncover<5->{ ($\neq S_n$ für $n > 3$)}
+   \end{itemize}
+   \begin{figure}
+   \centering%
+      \includegraphics<2-5>[width=0.5\textwidth]{graphics/triangle2.eps}%
+      \includegraphics<6>[width=0.5\textwidth]{graphics/d4.eps}%
+      \includegraphics<7>[width=0.5\textwidth]{graphics/d5.eps}%
+      \includegraphics<8>[width=0.5\textwidth]{graphics/d6.eps}%
+   \end{figure}
+\end{frame}
+
+\begin{frame}{Affine Spiegelungsgruppen}
+   \begin{itemize}
+      \item Gruppen $D_3$, $D_4$ sind besonders:\uncover<2->{ \textbf{kristallographisch}!}
+      \item<6-> Genauer: \textit{Punktgruppen} kristallographischer Gruppen
+      \item<7-> $G \leq \op{Isom}(\R^n)$ kristallograph. $\Leftrightarrow$ $G$ diskret und kokompakt
+      \begin{itemize}
+            \item<8->$\Leftrightarrow$ $G$ diskret und enthält volles Gitter (Satz v. Bieberbach)
+      \item<9-> $G$ ist Erweiterung $1 \rightarrow X \rightarrow G \rightarrow W \rightarrow 1$
+      \item<10-> $W$ Punktgruppe, $X$ Translationsgitter
+      \item<11-> Spezialfall: $G = W\rtimes X$
+   \end{itemize}
+   \end{itemize}
+   \begin{figure}
+   \centering%
+      \includegraphics<1>[height=5cm]{graphics/empty.eps}%
+      \includegraphics<2>[height=5cm]{graphics/doppelspat.jpg}%
+      \includegraphics<3>[height=5cm]{graphics/diverse.jpg}%
+      \includegraphics<4>[height=5cm]{graphics/calcit.jpg}%
+      \includegraphics<5-11>[height=5cm]{graphics/steinsalz.jpg}%
+   \end{figure}
+\end{frame}
+
+\begin{frame}{Affine Spiegelungsgruppen}
+   \begin{figure}
+   \centering%
+      \includegraphics<1>[width=.7\textwidth]{graphics/affcox1.eps}%
+      \includegraphics<2>[height=.7\textwidth]{graphics/affcox2.eps}%
+      \includegraphics<3>[height=.7\textwidth]{graphics/affcox3.eps}%
+      \includegraphics<4>[height=.7\textwidth]{graphics/affcox4.eps}%
+      \includegraphics<5>[height=.7\textwidth]{graphics/affcox5.eps}%
+      \includegraphics<6>[height=.7\textwidth]{graphics/affcox-gone-wrong-pre.eps}%
+      \includegraphics<7>[height=.7\textwidth]{graphics/affcox-gone-wrong.eps}%
+      \includegraphics<8>[height=.7\textwidth]{graphics/affcox5.eps}%
+      \includegraphics<9>[height=.7\textwidth]{graphics/affcox6.eps}%
+      \includegraphics<10>[height=.7\textwidth]{graphics/affcox7.eps}%
+      \includegraphics<11>[height=.7\textwidth]{graphics/affcox8.eps}%
+   \end{figure}
+\end{frame}
+
+\begin{frame}{Affine Coxetergruppen}
+   \begin{figure}
+   \centering%
+      \includegraphics<1>[height=.7\textwidth]{graphics/affcox9.eps}%
+      \includegraphics<2>[height=.7\textwidth]{graphics/affcox10.eps}%
+      \includegraphics<3>[height=.7\textwidth]{graphics/affcox9.eps}%
+      \includegraphics<4>[height=.7\textwidth]{graphics/affcox11.eps}%
+   \end{figure}
 \end{frame}
 \end{document}

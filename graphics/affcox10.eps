@@ -1,0 +1,170 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 100 100
+% Helper functions
+/smult2 { % x y s smult => s*x s*y
+   /bs exch def
+   /by exch def
+   /bx exch def
+   bx bs mul
+   by bs mul
+} def
+/vadd2 { % x1 y1 x2 y2 => x1+x2 + y1+y2
+   /y2 exch def
+   /x2 exch def
+   /y1 exch def
+   /x1 exch def
+   x1 x2 add
+   y1 y2 add
+} def
+/lincomb { % x1 y1 x2 y2 s1 s2 => (s1*x1 + s2*x2) (s1*y1 + s2*y2)
+   /s2 exch def
+   /s1 exch def
+   /y2 exch def
+   /x2 exch def
+   /y1 exch def
+   /x1 exch def
+   s1 x1 mul s2 x2 mul add
+   s1 y1 mul s2 y2 mul add
+} def
+/drawpoint { % x y => 
+   gsave
+      translate
+      newpath 0 0 2.5 0 360 arc fill
+   grestore
+} def
+% Set up clip path
+newpath
+0 0 moveto
+100 0 lineto
+100 100 lineto
+0 100 lineto
+closepath
+clip
+% Center coordinates
+50 50 translate
+% Scale dat shit
+3 3 scale
+newpath
+
+%% Draw triangle
+%gsave
+%   0.25 0.25 scale
+%   newpath
+%   0 40 moveto
+%   2 { 120 rotate
+%   0 40 lineto } repeat
+%   closepath
+%   stroke
+%grestore
+
+% Draw fundamental chamber in different color
+gsave
+   0.25 0.25 scale
+   1 0.5 0 setrgbcolor
+
+   -60 rotate
+   newpath
+   0 0 moveto
+   0 100 lineto
+   100 100 lineto
+   100 0 lineto
+   closepath
+   clip
+
+   -60 rotate
+   newpath
+   0 0 moveto
+   0 100 lineto
+   -100 100 lineto
+   -100 0 lineto
+   closepath
+   clip
+
+   120 rotate
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   x1 y1 x2 y2 1 1 lincomb 0.5 smult2 translate
+   newpath
+   0 0 moveto
+   0 -100 lineto
+   -100 -100 lineto
+   -100 0 lineto
+   closepath
+   clip
+
+   clippath fill
+grestore
+% Draw affine hyperplanes
+gsave
+   0.25 0.25 scale
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   -15 1 15 {
+      /s1 exch def
+      -15 1 15 {
+         /s2 exch def
+         gsave
+            x1 y1 x2 y2 s1 s2 lincomb 0.5 smult2 translate
+            1 0 0 setrgbcolor
+            3 {
+               newpath
+               0 -50 moveto
+               0 50 lineto
+               stroke
+               120 rotate
+            } repeat
+         grestore
+      } for
+   } for
+grestore
+% Draw vertices
+gsave
+   0.25 0.25 scale
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   -15 1 15 {
+      /s1 exch def
+      -15 1 15 {
+         /s2 exch def
+         x1 y1 x2 y2 s1 s2 lincomb drawpoint
+      } for
+   } for
+   x1 y1 drawpoint
+   x2 y2 drawpoint
+grestore
+
+% Draw walls of fundamental chamber
+gsave
+   0.25 0.25 scale
+   currentlinewidth 2 mul setlinewidth
+   0 0 1 setrgbcolor
+
+   -60 rotate
+   newpath
+   0 -100 moveto
+   0 100 lineto
+   stroke
+
+   -60 rotate
+   newpath
+   0 -100 moveto
+   0 100 lineto
+   stroke
+
+   120 rotate
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   x1 y1 x2 y2 1 1 lincomb 0.5 smult2 translate
+   newpath
+   0 100 moveto
+   0 -100 lineto
+   stroke
+grestore

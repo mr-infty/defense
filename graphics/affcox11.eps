@@ -1,0 +1,272 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 100 100
+% Helper functions
+
+%arrow: Draws arrow from (tailx taily) to (tipx tipy).
+%  args:
+%     (tailx taily)  = coordinates of arrow tail
+%     (tipx tipy)    = coordinates of arrow tip
+%     shaftwidth     = width of shaft
+%     headlength     = length of head
+%     arrowidth      = width of arrow
+/arrowdict 15 def
+/arrow {
+   arrowdict begin
+      /headlength exch def
+      /arrowwidth exch def
+      /shaftwidth exch def
+      /tipy exch def
+      /tipx exch def
+      /taily exch def
+      /tailx exch def
+      /dx tipx tailx sub def
+      /dy tipy taily sub def
+      /arrowlength dx dx mul dy dy mul add sqrt def
+      /halfshaftwidth shaftwidth 2 div def
+      /halfheadwidth arrowwidth 2 div def
+      /angle dy dx atan def
+      /base arrowlength headlength sub def
+      /savedmatrix matrix currentmatrix def
+      tailx taily translate angle rotate
+      0 halfshaftwidth neg moveto
+      base halfshaftwidth neg lineto
+      base halfheadwidth neg lineto
+      arrowlength 0 lineto
+      base halfheadwidth lineto
+      base halfshaftwidth lineto
+      0 halfshaftwidth lineto
+      closepath
+      savedmatrix setmatrix
+   end
+} def
+
+/smult2dict 3 dict def
+/smult2 { % x y s smult => s*x s*y
+   smult2dict begin
+   /s exch def
+   /y exch def
+   /x exch def
+   x s mul
+   y s mul
+   end
+} def
+/vadd2dict 4 dict def
+/vadd2 { % x1 y1 x2 y2 => x1+x2 + y1+y2
+   vadd2dict begin
+   /y2 exch def
+   /x2 exch def
+   /y1 exch def
+   /x1 exch def
+   x1 x2 add
+   y1 y2 add
+   end
+} def
+/lincombdict 6 dict def
+/lincomb { % x1 y1 x2 y2 s1 s2 => (s1*x1 + s2*x2) (s1*y1 + s2*y2)
+   lincombdict begin
+   /s2 exch def
+   /s1 exch def
+   /y2 exch def
+   /x2 exch def
+   /y1 exch def
+   /x1 exch def
+   s1 x1 mul s2 x2 mul add
+   s1 y1 mul s2 y2 mul add
+   end
+} def
+/drawpoint { % x y => 
+   gsave
+      translate
+      newpath 0 0 2.5 0 360 arc fill
+   grestore
+} def
+/drawpointraddict 1 dict def
+/drawpointrad { % r x y => 
+   gsave
+      translate
+      /r exch def
+      newpath 0 0 r 0 360 arc fill
+   grestore
+} def
+
+/endpointdict 1 dict def
+/endpoint { % <start-point> <gallery> => <point>
+endpointdict begin
+   /savedmatrix matrix currentmatrix def
+   { exec } forall
+   moveto
+   savedmatrix setmatrix
+   currentpoint
+end
+} def
+
+%% Constants
+% lattice points
+/Lat1x 0 def
+/Lat1y 40 def
+/Lat2x 120 cos Lat1x mul 120 sin Lat1y mul add def
+/Lat2y -120 sin Lat1x mul 120 cos Lat1y mul add def
+
+% interior point of fundamental chamber
+/FCx Lat1x 2 Lat2x mul add 6 div def
+/FCy Lat1y 2 Lat2y mul add 6 div def
+
+% fundamental reflections
+/refl1 {
+   30 rotate
+   1 -1 scale
+   -30 rotate
+} def
+
+/refl2 {
+   150 rotate
+   1 -1 scale
+   -150 rotate
+} def
+
+/refl0 {
+   1 -1 scale
+   FCx FCy translate
+} def
+
+% Set up clip path
+newpath
+0 0 moveto
+100 0 lineto
+100 100 lineto
+0 100 lineto
+closepath
+clip
+% Center coordinates
+50 50 translate
+% Scale dat shit
+3 3 scale
+newpath
+
+%% Draw triangle
+%gsave
+%   0.25 0.25 scale
+%   newpath
+%   0 40 moveto
+%   2 { 120 rotate
+%   0 40 lineto } repeat
+%   closepath
+%   stroke
+%grestore
+
+% Draw fundamental chamber in different color
+gsave
+   0.25 0.25 scale
+   1 0.5 0 setrgbcolor
+
+   -60 rotate
+   newpath
+   0 0 moveto
+   0 100 lineto
+   100 100 lineto
+   100 0 lineto
+   closepath
+   clip
+
+   -60 rotate
+   newpath
+   0 0 moveto
+   0 100 lineto
+   -100 100 lineto
+   -100 0 lineto
+   closepath
+   clip
+
+   120 rotate
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   x1 y1 x2 y2 1 1 lincomb 0.5 smult2 translate
+   newpath
+   0 0 moveto
+   0 -100 lineto
+   -100 -100 lineto
+   -100 0 lineto
+   closepath
+   clip
+
+   clippath fill
+grestore
+% Draw affine hyperplanes
+gsave
+   0.25 0.25 scale
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   -15 1 15 {
+      /s1 exch def
+      -15 1 15 {
+         /s2 exch def
+         gsave
+            x1 y1 x2 y2 s1 s2 lincomb 0.5 smult2 translate
+            1 0 0 setrgbcolor
+            3 {
+               newpath
+               0 -50 moveto
+               0 50 lineto
+               stroke
+               120 rotate
+            } repeat
+         grestore
+      } for
+   } for
+grestore
+% Draw vertices
+gsave
+   0.25 0.25 scale
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   -15 1 15 {
+      /s1 exch def
+      -15 1 15 {
+         /s2 exch def
+         x1 y1 x2 y2 s1 s2 lincomb drawpoint
+      } for
+   } for
+   x1 y1 drawpoint
+   x2 y2 drawpoint
+grestore
+
+%% Draw walls of fundamental chamber
+%gsave
+%   0.25 0.25 scale
+%   currentlinewidth 2 mul setlinewidth
+%   0 0 1 setrgbcolor
+%
+%   -60 rotate
+%   newpath
+%   0 -100 moveto
+%   0 100 lineto
+%   stroke
+%
+%   -60 rotate
+%   newpath
+%   0 -100 moveto
+%   0 100 lineto
+%   stroke
+%
+%   120 rotate
+%   /x1 0 def
+%   /y1 40 def
+%   /x2 120 cos x1 mul 120 sin y1 mul add def
+%   /y2 -120 sin x1 mul 120 cos y1 mul add def
+%   x1 y1 x2 y2 1 1 lincomb 0.5 smult2 translate
+%   newpath
+%   0 100 moveto
+%   0 -100 lineto
+%   stroke
+%grestore
+
+% Draw gallery
+0.25 0.25 scale
+%4 FCx FCy drawpointrad
+1 FCx FCy [ refl0 ] endpoint drawpointrad

@@ -1,0 +1,35 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 100 100
+% Set up clip path
+newpath
+0 0 moveto
+100 0 lineto
+100 100 lineto
+0 100 lineto
+closepath
+clip
+% Center coordinates
+50 50 translate
+newpath
+% Draw n-gon
+5 % Draw square
+gsave
+   newpath
+   0 40 moveto
+   dup 1 sub { dup 360 exch div rotate
+   0 40 lineto } repeat
+   closepath
+   stroke
+grestore
+% Draw symmetry axes
+gsave
+   1 0 0 setrgbcolor
+   dup {
+      newpath
+      0 -50 moveto
+      0 50 lineto
+      stroke
+      dup 360 exch 2 mul div rotate
+   } repeat
+   pop
+grestore
