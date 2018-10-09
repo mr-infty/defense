@@ -96,11 +96,13 @@ arrowdict begin
 /endpointdict 1 dict def
 /endpoint { % <start-point> <gallery> => <point>
    endpointdict begin
+      %gsave
       /savedmatrix matrix currentmatrix def
       { load exec } forall
       moveto
       savedmatrix setmatrix
       currentpoint
+      %grestore
    end
 } def
 
@@ -131,6 +133,37 @@ arrowdict begin
 /refl0 {
    -1 1 scale
    Lat2x neg 0 translate
+} def
+
+%/drawgallerydict 1 dict def
+%/drawgallery { % <gallery>
+%   /gal exch def
+%   gsave
+%      FCx FCy
+%      FCx FCy [ /refl0 /refl1 /refl2 ] endpoint %drawpoint
+%      0.5 4.0 4.0 arrow stroke
+%      0 1 gal length 1 sub {
+%
+%      } for
+%   grestore
+%} def
+
+/gallerypointsdict 4 dict def
+/gallerypoints { % <gallery> => <points>
+   gallerypointsdict begin
+      /gal exch def
+      /savedmatrix matrix currentmatrix def
+      FCx FCy
+      gal {
+         /tempmatrix matrix currentmatrix def
+         load exec
+         FCx FCy moveto
+         savedmatrix setmatrix
+         currentpoint
+         tempmatrix setmatrix
+      } forall
+      savedmatrix setmatrix
+   end
 } def
 
 % Set up clip path
@@ -272,7 +305,8 @@ grestore
 
 % Draw gallery
 0.25 0.25 scale
-%FCx FCy
-FCx FCy [ /refl0 /refl1 /refl2 ] endpoint drawpoint
-%0.1 0.1 0.1 arrow
-0.0 0.0 10.0 10.0 0.1 0.1 0.1 arrow stroke
+FCx FCy
+FCx FCy [ /refl0 /refl1 /refl2 ] endpoint %drawpoint
+0.5 4.0 4.0 arrow stroke
+%0.0 0.0 10.0 10.0 0.1 0.1 0.1 arrow stroke
+[ /refl1 ] gallerypoints 0.5 4.0 4.0 arrow stroke
