@@ -1,0 +1,437 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 80 80
+% Set up clip path
+newpath
+0 0 moveto
+80 0 lineto
+80 100 lineto
+0 100 lineto
+closepath
+clip
+% Center coordinates
+40 40 translate
+% Scale dat shit
+3 3 scale
+newpath
+
+% Helper functions
+
+%arrow: Draws arrow from (tailx taily) to (tipx tipy).
+%  args:
+%     (tailx taily)  = coordinates of arrow tail
+%     (tipx tipy)    = coordinates of arrow tip
+%     shaftwidth     = width of shaft
+%     headlength     = length of head
+%     arrowidth      = width of arrow
+/arrowdict 15 dict def
+/arrow { % tailx taily tipx tipy shaftwidth arrowwidth headlength =>
+arrowdict begin
+            /headlength exch def
+            /arrowwidth exch def
+            /shaftwidth exch def
+            /tipy exch def
+            /tipx exch def
+            /taily exch def
+            /tailx exch def
+            /dx tipx tailx sub def
+            /dy tipy taily sub def
+            /arrowlength dx dx mul dy dy mul add sqrt def
+            /halfshaftwidth shaftwidth 2 div def
+            /halfheadwidth arrowwidth 2 div def
+            /angle dy dx atan def
+            /base arrowlength headlength sub def
+            /savedmatrix matrix currentmatrix def
+            tailx taily translate angle rotate
+            0 halfshaftwidth neg moveto
+            base halfshaftwidth neg lineto
+            base halfheadwidth neg lineto
+            arrowlength 0 lineto
+            base halfheadwidth lineto
+            base halfshaftwidth lineto
+            0 halfshaftwidth lineto
+            closepath
+            savedmatrix setmatrix
+            end
+} def
+
+/drawcoloredarrow { % tailx taily tipx tipy r g b =>
+   gsave
+      .25 setlinewidth
+      setrgbcolor
+      2.0 5.5 5.0 arrow
+      gsave
+         fill
+      grestore
+      0 setgray
+      stroke
+   grestore
+} def
+
+/smult2dict 3 dict def
+/smult2 { % x y s smult => s*x s*y
+   smult2dict begin
+      /s exch def
+      /y exch def
+      /x exch def
+      x s mul
+      y s mul
+   end
+} def
+
+/vadd2dict 4 dict def
+/vadd2 { % x1 y1 x2 y2 => x1+x2 + y1+y2
+   vadd2dict begin
+      /y2 exch def
+      /x2 exch def
+      /y1 exch def
+      /x1 exch def
+      x1 x2 add
+      y1 y2 add
+   end
+} def
+
+/lincombdict 6 dict def
+/lincomb { % x1 y1 x2 y2 s1 s2 => (s1*x1 + s2*x2) (s1*y1 + s2*y2)
+   lincombdict begin
+      /s2 exch def
+      /s1 exch def
+      /y2 exch def
+      /x2 exch def
+      /y1 exch def
+      /x1 exch def
+      s1 x1 mul s2 x2 mul add
+      s1 y1 mul s2 y2 mul add
+   end
+} def
+
+/drawpoint { % x y => 
+   gsave
+      translate
+      newpath 0 0 2.5 0 360 arc fill
+   grestore
+} def
+
+/drawpointraddict 1 dict def
+/drawpointrad { % r x y => 
+   gsave
+      translate
+      /r exch def
+      newpath 0 0 r 0 360 arc fill
+   grestore
+} def
+
+/endpointdict 1 dict def
+/endpoint { % <start-point> <gallery> => <point>
+endpointdict begin
+   %gsave
+   /savedmatrix matrix currentmatrix def
+{ load exec } forall
+moveto
+savedmatrix setmatrix
+currentpoint
+      %grestore
+   end
+} def
+
+%% Constants
+% Colours
+/FCColor [ 1 .5 0 ] def
+/PosColor [ 1.0 0.2 0.0 ] def
+/NegColor [ 0.0 0.53333 1.0 ] def
+/NeutrColor [ 0 0 0 ] def
+
+% lattice points
+/Lat1x 0 def
+/Lat1y 40 def
+/Lat2x 120 cos Lat1x mul 120 sin Lat1y mul add def
+/Lat2y -120 sin Lat1x mul 120 cos Lat1y mul add def
+
+% interior point of fundamental chamber
+/FCx Lat1x 2 Lat2x mul add 6 div def
+/FCy Lat1y 2 Lat2y mul add 6 div def
+
+% fundamental roots
+/halfspc1dict 1 dict def
+/halfspc1 {
+   halfspc1dict begin
+      /savedmatrix matrix currentmatrix def
+      -60 rotate
+      newpath
+      0 -100 moveto
+      0 100 lineto
+      100 100 lineto
+      100 -100 lineto
+      closepath
+      savedmatrix setmatrix
+   end
+} def
+
+/halfspc2dict 1 dict def
+/halfspc2 {
+   halfspc2dict begin
+      /savedmatrix matrix currentmatrix def
+      -120 rotate
+      newpath
+      0 -100 moveto
+      0 100 lineto
+      -100 100 lineto
+      -100 -100 lineto
+      closepath
+      savedmatrix setmatrix
+   end
+} def
+
+/halfspc0dict 3 dict def
+/halfspc0 {
+   halfspc0dict begin
+      /savedmatrix matrix currentmatrix def
+      Lat1x Lat1y Lat2x Lat2y 1 1 lincomb 0.5 smult2 translate
+      newpath
+      0 100 moveto
+      0 -100 lineto
+      -100 -100 lineto
+      -100 100 lineto
+      closepath
+      savedmatrix setmatrix
+   end
+} def
+
+% fundamental reflections
+/refl1 {
+   30 rotate
+   1 -1 scale
+   -30 rotate
+} def
+
+/refl2 {
+   150 rotate
+   1 -1 scale
+   -150 rotate
+} def
+
+/refl0 {
+   -1 1 scale
+   Lat2x neg 0 translate
+} def
+
+/fillchamber { % r g b =>
+   gsave
+      setrgbcolor
+      halfspc1 clip
+      halfspc2 clip
+      halfspc0 clip
+      clippath fill
+   grestore
+} def
+
+/coloredchambergallerydict 1 dict def
+/coloredchambergallery { % <gal> <col> =>
+   coloredchambergallerydict begin
+      /col exch def
+      gsave
+         col aload pop fillchamber
+         {
+            load exec
+            col aload pop fillchamber
+         } forall
+      grestore
+   end
+} def
+
+/colorchamber { % <gal> <col> =>
+   gsave
+      exch {
+         load exec 
+      } forall
+      aload pop fillchamber
+   grestore
+} def
+
+%/drawgallerydict 1 dict def
+%/drawgallery { % <gallery>
+%   /gal exch def
+%   gsave
+%      FCx FCy
+%      FCx FCy [ /refl0 /refl1 /refl2 ] endpoint %drawpoint
+%      0.5 4.0 4.0 arrow stroke
+%      0 1 gal length 1 sub {
+%
+%      } for
+%   grestore
+%} def
+
+/gallerypointsdict 4 dict def
+/gallerypoints { % <gallery> => <points>
+   gallerypointsdict begin
+      /gal exch def
+      /savedmatrix matrix currentmatrix def
+      FCx FCy
+      gal {
+         load exec
+         FCx FCy moveto
+         gsave
+            savedmatrix setmatrix
+            currentpoint
+         grestore
+      } forall
+      savedmatrix setmatrix
+   end
+} def
+
+/drawcoloredgallerydict 3 dict def
+/drawcoloredgallery { % <gal> <colours> =>
+   drawcoloredgallerydict begin
+      gsave
+         /cols exch def
+         /gal exch def
+         gal gallerypoints
+         0 1 gal length 1 sub {
+            gal length exch sub 1 sub % reverse index (necessary!)
+            cols exch get /col exch def 
+            4 2 roll
+            2 copy
+            6 -2 roll
+            col aload pop drawcoloredarrow %0.5 4.0 4.0 arrow stroke
+         } for
+      grestore
+   end
+} def
+
+/maparraydict 2 dict def
+/maparray { % <array> <proc>
+   maparraydict begin
+      /proc exch def
+      /arr exch def
+      [ arr {
+         proc exec
+      } forall ]
+   end
+} def
+
+/drawgallery { % <gal>
+   dup { pop NeutrColor } maparray drawcoloredgallery
+} def
+
+/drawsignedgallery { % <gal> <signs>
+   {{ PosColor } { NegColor } ifelse} maparray drawcoloredgallery
+} def
+
+%% Draw triangle
+%gsave
+%   0.25 0.25 scale
+%   newpath
+%   0 40 moveto
+%   2 { 120 rotate
+%   0 40 lineto } repeat
+%   closepath
+%   stroke
+%grestore
+
+% Draw fundamental chamber in different color
+gsave
+   .25 .25 scale
+   [ ] FCColor colorchamber
+grestore
+
+% Draw Weyl chamber
+gsave
+   .25 .25 scale
+   refl1 refl2 refl1
+   halfspc1 clip
+   halfspc2 clip
+   FCColor aload pop setrgbcolor
+   clippath fill
+grestore
+
+%% color reference chambers
+%gsave
+%   0.25 0.25 scale
+%   [ /refl2 ] NegColor colorchamber
+%   [ /refl1 /refl2 ] PosColor colorchamber
+%grestore
+
+%% Color in chambers of gallery
+%gsave
+%   0.25 0.25 scale
+%   [ /refl1 /refl2 /refl1 ] FCColor coloredchambergallery
+%grestore
+
+% Draw affine hyperplanes
+gsave
+   0.25 0.25 scale
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   -15 1 15 {
+      /s1 exch def
+      -15 1 15 {
+         /s2 exch def
+         gsave
+            x1 y1 x2 y2 s1 s2 lincomb 0.5 smult2 translate
+            1 0 0 setrgbcolor
+            3 {
+               newpath
+               0 -50 moveto
+               0 50 lineto
+               stroke
+               120 rotate
+            } repeat
+         grestore
+      } for
+   } for
+grestore
+% Draw vertices
+gsave
+   0.25 0.25 scale
+   /x1 0 def
+   /y1 40 def
+   /x2 120 cos x1 mul 120 sin y1 mul add def
+   /y2 -120 sin x1 mul 120 cos y1 mul add def
+   -15 1 15 {
+      /s1 exch def
+      -15 1 15 {
+         /s2 exch def
+         x1 y1 x2 y2 s1 s2 lincomb drawpoint
+      } for
+   } for
+   x1 y1 drawpoint
+   x2 y2 drawpoint
+grestore
+
+%% Draw walls of fundamental chamber
+%gsave
+%   0.25 0.25 scale
+%   currentlinewidth 2 mul setlinewidth
+%   0 0 1 setrgbcolor
+%
+%   -60 rotate
+%   newpath
+%   0 -100 moveto
+%   0 100 lineto
+%   stroke
+%
+%   -60 rotate
+%   newpath
+%   0 -100 moveto
+%   0 100 lineto
+%   stroke
+%
+%   120 rotate
+%   /x1 0 def
+%   /y1 40 def
+%   /x2 120 cos x1 mul 120 sin y1 mul add def
+%   /y2 -120 sin x1 mul 120 cos y1 mul add def
+%   x1 y1 x2 y2 1 1 lincomb 0.5 smult2 translate
+%   newpath
+%   0 100 moveto
+%   0 -100 lineto
+%   stroke
+%grestore
+
+% Draw gallery
+0.25 0.25 scale
+
+%[ /refl2 /refl1 /refl2 ] [ false true true ] drawsignedgallery
+
+%[ /refl0 /refl1 /refl2 ] FCColor coloredchambergallery
