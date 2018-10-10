@@ -1,5 +1,19 @@
 %!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 0 0 100 100
+%%BoundingBox: 0 0 80 80
+% Set up clip path
+newpath
+0 0 moveto
+80 0 lineto
+80 100 lineto
+0 100 lineto
+closepath
+clip
+% Center coordinates
+40 40 translate
+% Scale dat shit
+3 3 scale
+newpath
+
 % Helper functions
 
 %arrow: Draws arrow from (tailx taily) to (tipx tipy).
@@ -224,6 +238,15 @@ currentpoint
    end
 } def
 
+/colorchamber { % <gal> <col> =>
+   gsave
+      exch {
+         load exec 
+      } forall
+      aload pop fillchamber
+   grestore
+} def
+
 %/drawgallerydict 1 dict def
 %/drawgallery { % <gallery>
 %   /gal exch def
@@ -263,6 +286,7 @@ currentpoint
          /gal exch def
          gal gallerypoints
          0 1 gal length 1 sub {
+            gal length exch sub 1 sub % reverse index (necessary!)
             cols exch get /col exch def 
             4 2 roll
             2 copy
@@ -292,20 +316,6 @@ currentpoint
    {{ PosColor } { NegColor } ifelse} maparray drawcoloredgallery
 } def
 
-% Set up clip path
-newpath
-0 0 moveto
-100 0 lineto
-100 100 lineto
-0 100 lineto
-closepath
-clip
-% Center coordinates
-50 50 translate
-% Scale dat shit
-3 3 scale
-newpath
-
 %% Draw triangle
 %gsave
 %   0.25 0.25 scale
@@ -317,51 +327,23 @@ newpath
 %   stroke
 %grestore
 
-% Draw fundamental chamber in different color
+%% Draw fundamental chamber in different color
+%gsave
+%   .25 .25 scale
+%   [ ] FCColor colorchamber
+%grestore
+
 gsave
    0.25 0.25 scale
-   1 0.5 0 setrgbcolor
-
-   -60 rotate
-   newpath
-   0 0 moveto
-   0 100 lineto
-   100 100 lineto
-   100 0 lineto
-   closepath
-   clip
-
-   -60 rotate
-   newpath
-   0 0 moveto
-   0 100 lineto
-   -100 100 lineto
-   -100 0 lineto
-   closepath
-   clip
-
-   120 rotate
-   /x1 0 def
-   /y1 40 def
-   /x2 120 cos x1 mul 120 sin y1 mul add def
-   /y2 -120 sin x1 mul 120 cos y1 mul add def
-   x1 y1 x2 y2 1 1 lincomb 0.5 smult2 translate
-   newpath
-   0 0 moveto
-   0 -100 lineto
-   -100 -100 lineto
-   -100 0 lineto
-   closepath
-   clip
-
-   clippath fill
+   [ ] NegColor colorchamber
+   [ /refl1 /refl2 /refl1 ] PosColor colorchamber
 grestore
 
-% Color in chambers of gallery
-gsave
-   0.25 0.25 scale
-   [ /refl1 ] FCColor coloredchambergallery
-grestore
+%% Color in chambers of gallery
+%gsave
+%   0.25 0.25 scale
+%   [ /refl1 /refl2 /refl1 ] FCColor coloredchambergallery
+%grestore
 
 % Draw affine hyperplanes
 gsave
@@ -447,7 +429,7 @@ grestore
 %[ /refl0 /refl1 /refl2 ] gallerypoints 4 2 roll 2 copy 6 -2 roll 0.5 4.0 4.0 arrow stroke
 %0.5 4.0 4.0 arrow stroke
 
-%[ /refl0  /refl1 /refl2 ] drawgallery
+[ /refl1 /refl2 /refl1 /refl2 /refl1 /refl2 ] [ true true true false false false ] drawsignedgallery
 %[ /refl0  /refl1 /refl2 ] [ true false true ] drawsignedgallery
 
 %gsave

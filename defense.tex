@@ -17,9 +17,14 @@
 \newcommand{\Z}{\bbf{Z}}
 \newcommand{\R}{\bbf{R}}
 
+\newtheorem*{cor*}{Korollar}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{problem*}{Problem}
+\newtheorem*{Aufgabe*}{Aufgabe}
+
 \renewcommand*{\proofname}{Beweis}
 
-\title{Bernsteinrelationen, der $2$-Kozykel $\bbf{X}$, und der Raum der Orientierungen}
+\title{Bernsteinabbildungen, der $2$-Kozykel $\bbf{X}$, und der Raum der Orientierungen}
 \author{Nicolas A. Schmidt}
 \date{}
 
@@ -199,7 +204,7 @@
             \item<8->$\Leftrightarrow$ $G$ diskret und enthält volles Gitter (Satz v. Bieberbach)
       \item<9-> $G$ ist Erweiterung $1 \rightarrow X \rightarrow G \rightarrow W \rightarrow 1$
       \item<10-> $W$ Punktgruppe, $X$ Translationsgitter
-      \item<11-> Spezialfall: $G = W\rtimes X$
+      \item<11-> Spezialfall: $G = W\ltimes X$
    \end{itemize}
    \end{itemize}
    \begin{figure}
@@ -236,6 +241,146 @@
       \includegraphics<2>[height=.7\textwidth]{graphics/affcox10.eps}%
       \includegraphics<3>[height=.7\textwidth]{graphics/affcox9.eps}%
       \includegraphics<4>[height=.7\textwidth]{graphics/affcox11.eps}%
+      \includegraphics<5>[height=.7\textwidth]{graphics/affcox12.eps}%
+      \includegraphics<6>[height=.7\textwidth]{graphics/affcox13.eps}%
+      \includegraphics<7>[height=.7\textwidth]{graphics/affcox14.eps}%
+      \includegraphics<8>[height=.7\textwidth]{graphics/affcox15.eps}%
    \end{figure}
 \end{frame}
+
+\begin{frame}{$Z(R[W])$ für affine Coxetergruppen}
+\begin{itemize}
+   \item<2-> $W = W_0 \ltimes X$\quad -\quad $W_0$ endlich, $X$ Translationsgitter
+   \item<3-> $R[X] \subseteq R[W]$\quad -\quad kommutative Unteralgebra
+\end{itemize}
+
+\pause[4]\begin{lemma*}
+   Eine Konjugationsklasse in $W$ ist endlich genau dann wenn sie in $X$ enthalten ist.
+\end{lemma*}
+\begin{proof}<5->
+   \begin{itemize}
+      \item<5-> $w \in W_0$, $x \in X$: $x^{-1}wx = x^{-1}w(x) x$
+      \item<6-> $\# \{ x^{-1}w(x) : x \in X\} = \infty$ falls $w \neq 1$
+      \item<7-> Andererseits $[x] = \{ wxw^{-1}\ :\ w \in W \} = \{ wxw^{-1}\ :\ w \in W_0\}$ (endlich)
+   \end{itemize}
+\end{proof}
+\end{frame}
+
+\begin{frame}{$Z(R[W])$ für affine Coxetergruppen}
+\begin{cor*}
+   \begin{center}$Z(R[W]) = R[X]^{W_0}$\end{center}
+\end{cor*}
+\end{frame}
+
+\begin{frame}{Eine Sackgasse (?)}
+   \begin{align*} \uncover<2->{Z(R[W]) & = R[X]^{W_0} \\}
+      \uncover<3->{Z(\mathcal{H}) & = \text{?}}
+   \end{align*}
+   \pause[4]\begin{problem*}
+      Weder ist
+   \[ X \longrightarrow \mathcal{H},\quad x \mapsto T_x \]
+      ein (Monoid-)homomorphismus, noch ist
+      \[ \bigoplus_{x \in X} RT_x \subseteq \mathcal{H} \]
+      eine Unteralgebra, im allgemeinen.
+   \end{problem*}
+\end{frame}
+
+\begin{frame}{Die Jagd nach den Bernsteinabbildungen}
+   \pause[2]\begin{Aufgabe*} Zu jedem Ausdruck $s_1 \dots s_r$ wähle Vorzeichen $\varepsilon_1, \dots, \varepsilon_r \in \{ \pm \}$ derart, dass
+   \[ T_{s_1}^{\varepsilon_1} \dots T_{s_r}^{\varepsilon_r} \in \mathcal{H} \]
+   nur von dem Element $w = s_1 \dots s_r \in W$ abhängt.
+\end{Aufgabe*}
+\pause[3]\begin{center}\begin{tabular}{rcl}
+      Ausdrücke $s_1 \dots s_r$ & $\widehat{=}$ &Gallerien \\ & & \\
+      \uncover<4->{Ausdrücke $T_{s_1}^{\varepsilon_1} \dots T_{s_r}^{\varepsilon_r}$ & $\widehat{=}$ & \uncover<5->{\textit{gefärbte} Gallerien}}
+\end{tabular}\end{center}
+\end{frame}
+
+\begin{frame}{Die Jagd nach den Bernsteinabbildungen}
+   \begin{columns}
+      \begin{column}{.381966\textwidth}
+         \begin{tabular}{rl}Ausdruck: & %
+         \only<1>{$ $}%
+         \only<2>{$s_1$}%
+         \only<3>{$s_2$}%
+         \only<4>{$s_0$}%
+         \only<5>{$s_1$}%
+         \only<6>{$s_1 s_2$}%
+         \only<7>{$s_1 s_2 s_1$}%
+         \only<8>{$T_{s_1} T_{s_2} T_{s_1}$}%
+         \only<9>{$T_{s_1}^{-1} T_{s_2} T_{s_1}$}%
+         \only<10>{$T_{s_1}^{-1} T_{s_2}^{-1} T_{s_1}$}%
+         \only<11>{$T_{s_1}^{-1} T_{s_2}^{-1} T_{s_1}^{-1}$}%
+         \end{tabular}
+      \end{column}
+      \begin{column}{.618034\textwidth}
+         \begin{figure}
+            \centering%
+            \includegraphics<1>[width=\textwidth]{graphics/uncolgal.eps}%
+            \includegraphics<2>[width=\textwidth]{graphics/uncolgal2.eps}%
+            \includegraphics<3>[width=\textwidth]{graphics/uncolgal3.eps}%
+            \includegraphics<4>[width=\textwidth]{graphics/uncolgal4.eps}%
+            \includegraphics<5>[width=\textwidth]{graphics/uncolgal2.eps}%
+            \includegraphics<6>[width=\textwidth]{graphics/uncolgal5.eps}%
+            \includegraphics<7>[width=\textwidth]{graphics/uncolgal6.eps}%
+            \includegraphics<8>[width=\textwidth]{graphics/colgal1.eps}%
+            \includegraphics<9>[width=\textwidth]{graphics/colgal2.eps}%
+            \includegraphics<10>[width=\textwidth]{graphics/colgal3.eps}%
+            \includegraphics<11>[width=\textwidth]{graphics/colgal4.eps}%
+         \end{figure}
+      \end{column}
+   \end{columns}
+\end{frame}
+
+\begin{frame}{Die Jagd nach den Bernsteinabbildungen}
+   \only<1>{\begin{Aufgabe*} Zu jedem \textbf{Ausdruck} $s_1 \dots s_r$ wähle \textbf{Vorzeichen} $\varepsilon_1, \dots, \varepsilon_r \in \{ \pm \}$ derart, dass
+   \[ T_{s_1}^{\varepsilon_1} \dots T_{s_r}^{\varepsilon_r} \in \mathcal{H} \]
+   nur von dem \textbf{Element} $w = s_1 \dots s_r \in W$ abhängt.
+\end{Aufgabe*}}%
+\only<2>{\begin{Aufgabe*} Zu jeder \textbf{Gallerie} wähle eine \textbf{Färbung} derart, dass das zugehörige Element
+   \[ T_{s_1}^{\varepsilon_1} \dots T_{s_r}^{\varepsilon_r} \in \mathcal{H} \]
+   nur vom \textbf{Endpunkt} der Gallerie abhängt.
+\end{Aufgabe*}}
+\end{frame}
+
+\begin{frame}{Die Jagd nach den Bernsteinabbildungen}
+   \begin{columns}
+      \begin{column}{.45\textwidth}
+         \begin{tabular}{rl}Ausdruck: & %
+            \only<1>{$T_{s_1} T_{s_2} T_{s_1}$}%
+            \only<2>{$T_{s_1} T_{s_2} T_{s_1} T_{s_2}^{-1}$}%
+            \only<3>{$T_{s_1} T_{s_2} T_{s_1} T_{s_2}^{-1} T_{s_1}^{-1}$}%
+            \only<4-5>{$T_{s_1} T_{s_2} T_{s_1} T_{s_2}^{-1} T_{s_1}^{-1} T_{s_2}^{-1}$}%
+         \end{tabular} \\
+         \begin{figure}
+            \centering%
+            \includegraphics<1>[width=\textwidth]{graphics/colgal5l.eps}%
+            \includegraphics<2>[width=\textwidth]{graphics/colgal6l.eps}%
+            \includegraphics<3>[width=\textwidth]{graphics/colgal7l.eps}%
+            \includegraphics<4>[width=\textwidth]{graphics/colgal8l.eps}%
+            \includegraphics<5>[width=\textwidth]{graphics/colgal9l.eps}%
+         \end{figure}
+      \end{column}
+      \begin{column}[c]{.1\textwidth}
+      \begin{center}$=$\end{center}
+      \end{column}
+      \begin{column}{.45\textwidth}
+         \begin{tabular}{rl}Ausdruck: & %
+         \only<1>{$T_{s_2} T_{s_1} T_{s_2}$}%
+         \only<2>{$T_{s_2} T_{s_1}$}%
+         \only<3>{$T_{s_2}$}%
+         \only<4-5>{$ $}%
+         \end{tabular} \\
+         \begin{figure}
+            \centering%
+            \includegraphics<1>[width=\textwidth]{graphics/colgal5r.eps}%
+            \includegraphics<2>[width=\textwidth]{graphics/colgal6r.eps}%
+            \includegraphics<3>[width=\textwidth]{graphics/colgal7r.eps}%
+            \includegraphics<4>[width=\textwidth]{graphics/colgal8r.eps}%
+            \includegraphics<5>[width=\textwidth]{graphics/colgal8r.eps}%
+         \end{figure}
+      \end{column}
+   \end{columns}
+\end{frame}
+
 \end{document}
