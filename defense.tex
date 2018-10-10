@@ -17,8 +17,11 @@
 \newcommand{\Z}{\bbf{Z}}
 \newcommand{\R}{\bbf{R}}
 
+\newtheorem*{satz*}{Satz}
 \newtheorem*{cor*}{Korollar}
 \newtheorem*{lemma*}{Lemma}
+\newtheorem*{nb*}{N.B.}
+\newtheorem*{def*}{Definition}
 \newtheorem*{problem*}{Problem}
 \newtheorem*{Aufgabe*}{Aufgabe}
 
@@ -423,4 +426,123 @@
    \end{columns}
 \end{frame}
 
+\begin{frame}{Orientierungen von Coxetergruppen}
+   \begin{def*}
+      Eine \textit{Orientierung} einer Coxetergruppe $(W,S)$ ist eine Abbildung $\mathfrak{o}: W\times S \rightarrow \{\pm 1\}$ derart, dass\\[8pt]
+      \pause[2]\begin{tabular}{rl}
+         (OR1) & $\mathfrak{o}(ws,s) = -\mathfrak{o}(w,s)$ \\[10pt]
+         \pause[3](OR2) & $(\mathfrak{o}(w, s), \mathfrak{o}(ws, t), \mathfrak{o}(wst, s), \mathfrak{o}(wsts, s), \dots)$ \pause[4] und \\[3pt]
+         & $(\mathfrak{o}(w, t), \mathfrak{o}(wt, s), \mathfrak{o}(wts, t), \mathfrak{o}(wtst, s), \dots)$ \\[3pt]
+         \pause[5] & haben (resp.) die Gestalt \\[5pt]
+         & $(\underbrace{+, \dots, +}_k, \underbrace{-, \dots, -}_{m(s,t)-k})$ und $(\underbrace{-, \dots, -}_{m(s,t)}, \underbrace{+, \dots, +}_k)$ \\[20pt]
+         & \pause[6] oder umgekehrt\pause[7], falls $m(s,t) < \infty$.
+      \end{tabular}
+   \end{def*}
+\end{frame}
+
+\begin{frame}{Die Bernsteinabbildung $\theta$}
+   \uncover<5->{Sei $a_s \in R^\times$ für alle $s$. Dann gilt}
+   \begin{satz*}
+      Zu jeder Orientierung $\mathfrak{o}$ gibt es genau eine Abbildung
+      \[ \theta_\mathfrak{o}: W \longrightarrow \mathcal{H}^\times \]
+      derart, dass\pause[2]
+      \[ \theta_\mathfrak{o}(w) = T_{s_1}^{\varepsilon_1} \dots T_{s_r}^{\varepsilon_r} \]
+      \pause[3]für jeden Ausdruck $w = s_1 \dots s_r$, \pause[4] wobei $\varepsilon_i = \mathfrak{o}(s_1 \dots s_{i-1}, s_i)$.
+   \end{satz*}
+   \pause[6]\begin{lemma*}
+      Für jedes $w \in W$ ist $T_w$ eine Einheit, und für $s \in S$ ist
+      \[ T_s^{-1} = a_s^{-1}(T_s - b_s) \]
+   \end{lemma*}
+\end{frame}
+
+\begin{frame}{Die Menge der Orientierungen}
+   \begin{def*}
+      \begin{center}$\mathcal{O}(W,S) := \{ \mathfrak{o} \in \{\pm 1\}^{W\times S}\ :\ \text{$\mathfrak{o}$ ist Orientierung}\}$\end{center}
+   \end{def*}
+\end{frame}
+
+\begin{frame}{Die Menge der Orientierungen}
+   \begin{lemma*}
+      Auf $\mathcal{O}(W,S)$ wirkt $W$ rechts derart, dass
+      \[ (\mathfrak{o}\bullet w)(w',s) = \mathfrak{o}(ww',s) \]
+      \pause[2]Ferner ist dort eine Involution $\mathfrak{o} \mapsto \mathfrak{o}^{\op{op}}$ durch
+      \[ \mathfrak{o}^{\op{op}}(w,s) = -\mathfrak{o}(w,s) \]
+      gegeben, welche mit der Rechtswirkung kommutiert.
+   \end{lemma*}
+\end{frame}
+
+\begin{frame}{Die Produktformel}
+   \begin{lemma*}
+      \begin{center}$\theta_{\mathfrak{o}}(w) \theta_{\mathfrak{o}\bullet w}(w') = \theta_{\mathfrak{o}}(ww')$\end{center}
+   \end{lemma*}
+   \pause[2] 
+   \begin{cor*}
+      \[ \op{Stab}_W(\mathfrak{o}) \longrightarrow \mathcal{H}^\times,\quad w \mapsto \theta_\mathfrak{o}(w) \]
+      ist ein Gruppenhomomorphismus.
+   \end{cor*}
+   \pause[3]$\Rightarrow$ Finde Orientierung $\mathfrak{o}$ welche invariant unter $X \leq W$ ist!
+\end{frame}
+
+\begin{frame}{Kammerorientierungen}
+   \pause[2]\begin{lemma*}
+      Für jedes $w_0 \in W$ definiert
+      \[ \mathfrak{o}_{w_0}(w,s) := \begin{cases} +1 &\text{ falls $\ell(w_0^{-1}ws) < \ell(w_0^{-1}w)$} \\
+         -1 &\text{ falls $\ell(w_0^{-1}ws) > \ell(w_0^{-1}w)$} \end{cases} \]
+      eine Orientierung, die \textit{Kammerorientierung zu $w_0$ hin}.
+   \end{lemma*}
+\end{frame}
+
+\begin{frame}{Kammerorientierungen}
+   \begin{proof}
+      \begin{figure}
+         \centering%
+         \includegraphics[width=.5\textwidth]{graphics/orientations-and-cayley-graph.eps}%
+      \end{figure}
+   \end{proof}
+\end{frame}
+
+\begin{frame}{Die Menge der Orientierungen im endlichen Fall}
+   Sei $W$ endlich.
+   \pause\begin{satz*}
+      \begin{center}$W \longrightarrow \mathcal{O}(W,S),\quad w \mapsto \mathfrak{o}_{w}$\end{center}
+      ist bijektiv.
+   \end{satz*}
+   \pause\begin{nb*}
+      \begin{center}$\mathfrak{o}_{w}^{\op{op}} = \mathfrak{o}_{w_0 w}$\end{center}
+      wobei $w_0 \in W$ das längste Element ist.
+   \end{nb*}
+\end{frame}
+
+\begin{frame}{Der \textit{Raum} der Orientierungen}
+   \begin{itemize}
+      \item<2-> $\{ \pm 1\}^{W \times S}$ ist ein kompakter top. Raum (Satz v. Tychonoff)
+   \end{itemize}
+   \pause[3]\begin{lemma*}
+      Die Teilmenge
+      \[ \mathcal{O}(W,S)\enskip \subseteq\enskip \{ \pm 1 \}^{W \times S} \]
+      ist \textit{abgeschlossen}.
+   \end{lemma*}
+   \pause \begin{lemma*}
+      Die Teilmenge
+      \begin{center}$\mathcal{O}_{\text{Kammer}} := \{ \mathfrak{o}_w, \mathfrak{o}_w^{\op{op}}\ :\ w \in W\}\enskip \subseteq\enskip \mathcal{O}(W,S)$\end{center}
+      ist \textit{diskret}, wenn $\# S < \infty$.
+   \end{lemma*}
+\end{frame}
+
+\begin{frame}{Randorientierungen}
+   \begin{def*}
+      \begin{center}$\mathcal{O}_{\text{Rand}} := \partial \mathcal{O}_{\op{Kammer}}$\end{center}
+   \end{def*}
+   \pause\begin{cor*}
+      \begin{center}$\mathcal{O}_{\text{Rand}} \neq \emptyset$\end{center}
+      falls $\# W = \infty$ und $\# S < \infty$.
+   \end{cor*}
+\end{frame}
+
+\begin{frame}{Die hyperbolische Coxetergruppe $\op{PGL}_2(\Z)$}
+   \begin{figure}
+      \centering%
+      \includegraphics[width=.8\textwidth]{graphics/hyperbolic-orientation.eps}%
+   \end{figure}
+\end{frame}
 \end{document}
