@@ -16,6 +16,7 @@
 \newcommand{\bbf}[1]{\mathds{#1}}
 \newcommand{\Z}{\bbf{Z}}
 \newcommand{\R}{\bbf{R}}
+\newcommand{\X}{\bbf{X}}
 
 \newtheorem*{satz*}{Satz}
 \newtheorem*{cor*}{Korollar}
@@ -598,7 +599,7 @@
       \begin{center}$\mathcal{A}_{\mathfrak{o}} := \theta_{\mathfrak{o}}(R[X]) \enskip \subseteq \enskip \mathcal{H}$\end{center}
    \end{def*}
    \pause\begin{lemma*}[Basiswechsel]
-      \begin{center}$\theta_{\mathfrak{o}}(w) = \sum_{w' < w} c_{w,w'} T_{w'}$\end{center}
+      \begin{center}$\theta_{\mathfrak{o}}(w) = c_{w,w}T_w + \sum_{w' < w} c_{w,w'} T_{w'}$\end{center}
       mit $c_{w,w} \in R^\times$.
    \end{lemma*}
    \pause \begin{cor*}
@@ -618,9 +619,91 @@
       \item Ziel: Zeige $Z(\mathcal{H}) = \mathcal{A}_{\mathfrak{o}}^{W_0}$
       \item<4-> Strategie:
          \begin{enumerate}
-            \item<5-> Zeige $\mathcal{A}_{\mathfrak{o}}^{W_0} \subseteq Z(\mathcal{H})$
+            \item<5-> Zeige $\mathcal{A}_{\mathfrak{o}}^{W_0} \subseteq Z(\mathcal{H})$ vermöge der \textit{Bernsteinrelationen}.
             \item<6-> Leite daraus die umgekehrte Inklusion her.
          \end{enumerate}
    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ein Problem}
+   \begin{problem}Die Definition von $\theta_\mathfrak{o}$ setzt die Invertierbarkeit der $T_s$ voraus.
+   \end{problem}
+   \begin{itemize}
+      \item<2-> Aber: $T_s^{-1} = a_s^{-1}(T_s - b_s)$
+      \item<3-> Also
+         \[ T_{s_1}^{\varepsilon_1} \dots T_{s_r}^{\varepsilon_r} = \left(\prod_{i : \varepsilon_i = -1} a_i^{-1}\right) T_1 \dots T_r \]
+         \pause[4]wobei
+         \[ T_i = \begin{cases} T_{s_i} : \varepsilon_i = +1 \\ T_{s_i} - b_{s_i} : \varepsilon_i = -1
+         \end{cases} \]
+      \item<5-> Idee: Definiere ganzzahlige Version $\widehat{\theta}_\mathfrak{o}$ durch
+         \[ \widehat{\theta}_\mathfrak{o}(s_1 \dots s_r) := T_1 \dots T_r \uncover<6->{= \left(\prod_{i : \varepsilon_i = -1} a_i\right)\theta_\mathfrak{o}(s_1 \dots s_r)} \]
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{Der Faktor $\gamma_\mathfrak{o}$}
+   \begin{lemma*}
+      Das Produkt
+      \[ \gamma_{\mathfrak{o}}(w) := \prod_{i : \varepsilon_i = -1} a_i \]
+      ist unabhängig von der Wahl des Ausdrucks $w = s_1 \dots s_r$ wenn $\ell(w) = r$.
+   \end{lemma*}
+   \pause\begin{proof}
+      \begin{itemize}
+         \item<3-> $a_i$ hängt nur ab von $H_i := (s_1 \dots s_{i-1}) s_i (s_1 \dots s_{i-1})^{-1}$
+         \item<4-> $\{ H_i : \varepsilon_i = -1\} = \{ H : 1 \in U^+_H,\ w \in U^-_H \}$
+      \end{itemize}
+   \end{proof}
+\end{frame}
+
+\begin{frame}{Der Spezialisierungstrick}
+   \begin{lemma}
+      Für je zwei reduzierte Ausdrücke $w = s_1 \dots s_r = s'_1 \dots s'_r$ gilt
+      \begin{equation} T_1 \dots T_r = T'_1 \dots T'_r \tag{$\ast$} \end{equation}
+   \end{lemma}
+   \pause\begin{proof}
+      \begin{itemize}
+         \item<2-> Gilt ($\ast$) in $\mathcal{H}$, so auch in $\mathcal{H}\otimes_R R'$
+         \item<3-> Genügt ($\ast$) für $R = \Z[\mathbf{a}_{[H]}]$ (= Polynomring) zu zeigen.
+         \item<4-> $\mathcal{H} \hookrightarrow \mathcal{H}\otimes_R \Z[\mathbf{a}_{[H]}^{\pm }]$ ist injektiv, da $\mathcal{H}$ freier $R$-Modul
+         \item<5-> Falls $a_s \in R^\times$ ist die Beh. klar, da
+            \[ T_1 \dots T_r = \gamma_{\mathfrak{o}}(w) \theta_{\mathfrak{o}}(w) = T'_1 \dots T'_r \]
+      \end{itemize}
+   \end{proof}
+\end{frame}
+
+\begin{frame}{Die ganzzahlige Bernsteinabbildung $\widehat{\theta}$}
+   \begin{def*}
+      \begin{center}$\widehat{\theta}_{\mathfrak{o}}(w) := T_1 \dots T_r$\end{center}
+      für $w = s_1 \dots s_r$, $r = \ell(w)$ beliebig.
+   \end{def*}
+   \pause \begin{problem}
+      \begin{center}$\widehat{\theta}_{\mathfrak{o}}(w)\widehat{\theta}_{\mathfrak{o}\bullet{}w}(w') = \text{?}$\end{center}
+   \end{problem}
+\end{frame}
+
+\begin{frame}{Der $2$-Kozykel $\X$}
+   \pause \begin{lemma*}
+      \begin{center}$\gamma_\mathfrak{o}(w)\gamma_{\mathfrak{o}\bullet w}(w') = \X(w,w') \gamma_\mathfrak{o}(ww')$\end{center}
+      wobei
+      \[ \X(w,w') = \prod_{\substack{ \text{$H$ trennt $1, w$} \\ \text{und $w, ww'$}}} a_{[H]} \]
+   \end{lemma*}
+   \pause \begin{cor*}
+      \begin{center}$\widehat{\theta}_{\mathfrak{o}}(w)\widehat{\theta}_{\mathfrak{o}\bullet{}w}(w') = \X(w,w') \widehat{\theta}_{\mathfrak{o}}(ww')$\end{center}
+   \end{cor*}
+\end{frame}
+
+\begin{frame}{Die kommutativen Unteralgebren $\mathcal{A}_{\mathfrak{o}}$ im ganzzahligen Fall}
+   \begin{itemize}
+      \item $\mathfrak{o} = \mathfrak{o}_V$
+   \end{itemize}
+   \pause \begin{lemma*}[Basiswechsel]
+      \begin{center}$\widehat{\theta}_{\mathfrak{o}}(w) = T_w + \sum_{w' < w} c_{w,w'} T_{w'}$\end{center}
+   \end{lemma*}
+   \pause \begin{def*}
+      \begin{center}$\mathcal{A}_\mathfrak{o} := \bigoplus_{x \in X} R\widehat{\theta}_{\mathfrak{o}}(x) \enskip \subseteq \enskip \mathcal{H}$\end{center}
+   \end{def*}
+\end{frame}
+
+\begin{frame}{Die Bernsteinrelationen}
+
 \end{frame}
 \end{document}
