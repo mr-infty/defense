@@ -704,6 +704,67 @@
 \end{frame}
 
 \begin{frame}{Die Bernsteinrelationen}
+   \begin{itemize}
+      \item<2-> $(W,S)$ - bel. Coxetergruppe
+   \end{itemize}
+   \pause[3]\begin{def*}
+      Zwei Orientierungen $\mathfrak{o}$, $\mathfrak{o}'$ von $W$ heißen \textit{benachbart}, falls
+      \[ \mathfrak{o}\bullet s_H = \mathfrak{o}' \]
+      gilt, für jede Hyperebene $H$ an denen $\mathfrak{o}$, $\mathfrak{o}'$ verschiedene Vorzeichen haben.
+   \end{def*}
+   \pause Beispiele:
+   \begin{itemize}
+      \item<5-> Die Orientierungen $\mathfrak{o}^+_\infty$, $\mathfrak{o}^-_\infty$ von $\op{PGL}_2(\Z)$
+      \item<6-> Die Orientierungen $\mathfrak{o}_V$, $\mathfrak{o}_{V'}$ einer affinen Coxetergruppen, für benachbarte Weylkammer $V,V'$
+   \end{itemize}
+\end{frame}
 
+\begin{frame}{Die Bernsteinrelationen}
+   \begin{itemize}
+      \item O.B.d.A. $a_s = 1$ für alle $s$.
+   \end{itemize}
+   \pause[2]\begin{satz*}[S.]
+      \begin{center}$\theta_{\mathfrak{o}}(w) - \theta_{\mathfrak{o}'}(w) = \left(\sum_H \mathfrak{o}(1,H) \Xi_{\mathfrak{o}'}(H)\right) \theta_\mathfrak{o}(w)$\end{center}
+      \pause[3]wobei die Summe über alle $H$ genommen wird welche $1$, $w$ trennen und an denen $\mathfrak{o}$,$\mathfrak{o}'$ verschiedene Vorzeichen haben\pause , und
+      \[ \Xi_{\mathfrak{o}}(H) := b_{[H]} \theta_{\mathfrak{o}}(H) \]
+   \end{satz*}
+\end{frame}
+
+\begin{frame}{pro-$p$ Hecke-Algebren}
+   \begin{itemize}
+      \item Bis jetzt: Hecke-Algebren über (affinen) Coxetergruppen.
+      \item<2-> Erweiterte Coxetergruppe: $W\rtimes \Omega$
+      \item<3-> pro-$p$ Coxetergruppe: $1 \rightarrow T \rightarrow W^{(1)} \rightarrow W\rtimes \Omega \rightarrow 1$ \\ mit $T$ abelsch
+      \item<4-> Zu $W^{(1)}$ existiert generische pro-$p$ Hecke-Algebra
+         \[ \mathcal{H}^{(1)} = \bigoplus_{w \in W^{(1)}} RT_w \]
+      \item<5-> Quadratische Relationen werden komplizierter:
+         \[ T_{n_s}^2 = a_s T_{n_s^2} + b_s T_{n_s} \]
+      \item<6-> Parameter $b_s$ nehmen Werte in der Gruppenalgebra $R[W]$ an
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{Das Zentrum affiner pro-$p$ Hecke-Algebren}
+   \begin{itemize}
+      \item<2-> $X^{(1)} := (W^{(1)} \rightarrow W\rtimes \Omega)^{-1}(X)$
+      \item<3-> Zu endlichem $W^{(1)}$-Orbit $\gamma \subseteq X^{(1)}$ und beliebiger sph. Or. $\mathfrak{o}$ setze
+         \[ z_\gamma := \sum_{x \in \gamma} \widehat{\theta}_{\mathfrak{o}}(x) \]
+   \end{itemize}
+   \pause[4]\begin{satz*}[S.]
+      Das Element $z_\gamma$ hängt nicht von der Wahl von $\mathfrak{o}$ ab, und
+      \[ Z(\mathcal{H}^{(1)}) = \bigoplus_{\gamma} Rz_\gamma = \mathcal{A}_{\mathfrak{o}}^{W^{(1)}} \]
+   \end{satz*}
+\end{frame}
+
+\begin{frame}{Die Struktur affiner pro-$p$ Hecke-Algebren}
+   \begin{itemize}
+      \item Bed. ($\ast$) $:\Leftrightarrow$ $R$ noethersch und $T$ endlich erzeugt
+   \end{itemize}
+   \pause \begin{satz*}[S.]
+      \begin{enumerate}
+         \item $\mathcal{H}^{(1)}$ ist ein endlicher Linksmodul über $\mathcal{A}^{(1)}_{\mathfrak{o}}$.
+         \item Falls ($\ast$), so ist $\mathcal{H}^{(1)}$ ist ein endlicher Modul über $Z(\mathcal{H}^{(1)})$.
+         \item Falls ($\ast$), so ist $Z(\mathcal{H}^{(1)})$ endlich erzeugt als $R$-Algebra.
+      \end{enumerate}
+   \end{satz*}
 \end{frame}
 \end{document}
