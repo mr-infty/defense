@@ -589,4 +589,38 @@
       \end{column}
    \end{columns}
 \end{frame}
+
+\begin{frame}{Die kommutativen Unteralgebren $\mathcal{A}_{\mathfrak{o}}$}
+   \begin{itemize}
+      \item $\mathfrak{o} = \mathfrak{o}_V$
+   \end{itemize}
+   \pause \begin{def*}
+      \begin{center}$\mathcal{A}_{\mathfrak{o}} := \theta_{\mathfrak{o}}(R[X]) \enskip \subseteq \enskip \mathcal{H}$\end{center}
+   \end{def*}
+   \pause\begin{lemma*}[Basiswechsel]
+      \begin{center}$\theta_{\mathfrak{o}}(w) = \sum_{w' < w} c_{w,w'} T_{w'}$\end{center}
+      mit $c_{w,w} \in R^\times$.
+   \end{lemma*}
+   \pause \begin{cor*}
+      \begin{center}$\theta_{\mathfrak{o}}: R[X] \stackrel{\sim}{\longrightarrow} \mathcal{A}_{\mathfrak{o}}$\end{center}
+   \end{cor*}
+\end{frame}
+
+\begin{frame}{Die kommutativen Unteralgebren $\mathcal{A}_{\mathfrak{o}}$}
+   \begin{satz*}
+      Die Unteralgebra $\mathcal{A}_{\mathfrak{o}} \subseteq \mathcal{H}$ stimmt überein mit ihrem Zentralisator
+      \[ C_{\mathcal{H}}(\mathcal{A}_{\mathfrak{o}}) = \{ z \in \mathcal{H}\ :\ \forall x \in \mathcal{A}_{\mathfrak{o}}\enskip zx = xz\} \]
+   \end{satz*}
+   \pause \begin{cor*}
+      \begin{center}$Z(\mathcal{H}) \subseteq \mathcal{A}_{\mathfrak{o}}$\end{center}
+   \end{cor*}
+   \pause\begin{itemize}
+      \item Ziel: Zeige $Z(\mathcal{H}) = \mathcal{A}_{\mathfrak{o}}^{W_0}$
+      \item<4-> Strategie:
+         \begin{enumerate}
+            \item<5-> Zeige $\mathcal{A}_{\mathfrak{o}}^{W_0} \subseteq Z(\mathcal{H})$
+            \item<6-> Leite daraus die umgekehrte Inklusion her.
+         \end{enumerate}
+   \end{itemize}
+\end{frame}
 \end{document}
